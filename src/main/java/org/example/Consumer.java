@@ -18,7 +18,7 @@ public class Consumer {
 
     String bootstrapServers = "127.0.0.1:9092";
     String groupId = "my-first-application";
-    String topic = "topic_1";
+    String topic = "first-topic";
 
     // create consumer configs
     Properties properties = new Properties();
@@ -27,6 +27,7 @@ public class Consumer {
     properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
     properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, groupId);
     properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+
 
     // create consumer
     KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(properties);
@@ -42,7 +43,6 @@ public class Consumer {
       for (ConsumerRecord<String, String> record : records){
         logger.info("Key: " + record.key() + ", Value: " + record.value());
         logger.info("Partition: " + record.partition() + ", Offset:" + record.offset());
-
       }
     }
   }
